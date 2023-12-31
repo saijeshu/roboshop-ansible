@@ -3,9 +3,9 @@
   become: yes
   tasks:
   - name: install remi release
-    ansible.builtin.dnf:
-      name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm 
-      State: present
+    ansible.builtin.dnf: # check pacakge will work not
+      name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      state: present
       disable_gpg_check: true
 
   - name: enable redis
