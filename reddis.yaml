@@ -1,4 +1,4 @@
-- name: reddis
+- name: install redis component
   hosts: reddis
   become: yes
   tasks:
@@ -8,7 +8,7 @@
       State: present
       disable_gpg-check: true
 
-  - name: enable reddis
+  - name: enable redis
     ansible.builtin.command: dnf module enable redis:remi-6.2 -y
 
   - name: install redis
@@ -17,13 +17,13 @@
       state: present
 
   - name: allow remote connections 
-    ansible.bultin.replace:
+    ansible.builtin.replace:
       path: /etc/redis/redis.conf
       regexp: 127.0.0.1 
       replace: 0.0.0.0  
 
-  - name: enable and start reddis
-    ansible.bultin.service:
-      name: reddis 
+  - name: enable and start redis
+    ansible.builtin.service:
+      name: redis 
       state: restarted  
       enabled: yes 
